@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+ <script language="javascript">
+    // define the function within the global scope
+    $.fn.MessageBox = function(msg) {
+        alert(msg);
+    };
+// or, if you want to encapsulate variables within the plugin
+    (function($) {
+        $.fn.MessageBoxScoped = function(msg) {
+            alert(msg);
+        };
+    })(jQuery); //<-- make sure you pass jQuery into the $ parameter
+ </script>
+<title></title>
+</head>
+
+<style type="text/css">
+*{
+	padding : 0;
+	margin : 0;
+}
+li{
+	list-style-type: none;
+}
+.clear{
+	clear : both;
+}
+#page{
+	position:relative;z-index:1;/*z인덱스*/
+	width : 2000px;
+	height:1200px;
+	margin : auto;
+	border : 0px solid #bbbbbb;
+}
+
+header{
+	position:relative;z-index:2;/*z인덱스*/
+	display:inline-block;
+	background-color:white;
+	width : 1200px;
+	height : 110px;
+	padding-left:400px;
+	padding-top : 10px;
+	border : 0px solid #bbbbbb;
+	position:fixed;
+	width:100%;
+	z-index: 10;
+}
+header li{
+	display:inline-block;
+}
+nav{
+	background-color:white;
+	width:1200px;
+	height: :50px;
+	display:block;
+	margin-top:10px;
+	padding-left:50px;
+
+	border:0px solid #bbbbbb;
+	text-align:center;
+
+	z-index: 11;
+
+	position:fixed;
+	top:100px;
+	width:100%;
+}
+
+nav ul{
+    text-align: center;
+    margin: 0;
+
+}
+nav li{
+		padding:10px 17px 0 17px;
+	display: inline-block;
+}
+
+
+#logo{
+	float : left ;
+	margin-top:10px;
+}
+
+
+footer{
+	position:absolute;
+	width:2000px;
+	height:180px;
+	border:0px solid #bbbbbb;
+	background-color:#F5F6FA;
+	top:1200px;
+
+}
+#address{
+	margin-left:400px;
+}
+
+
+.fade {
+ 	position: relative;
+}
+
+.fade div {
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	display: none;
+}
+
+input:-ms-input-placeholder {color:#a8a8a8;}
+input::-wekit-input-placeholder{color:#a8a8a8;}
+input::-moz-placeholder {color:#a8a8a8;}
+
+#search{
+	text-align:center;
+	margin-left:80px;
+	height: 40px;
+	width:500px;
+	border:3px solid #21A089;
+	background:#ffffff;
+	margin-bottom:15px;
+}
+
+input{
+	font-size: 16px;
+	width: 325px;
+	padding:10px;
+	border:0px;
+	outline:none;
+	float:left;
+}
+#searchbutton{
+	width:50px;
+	height:40px;
+	border:0px;
+	background:#21A089;
+	float:right;
+}
+
+
+.navmainmenu{
+	position:relative;
+}
+
+.navmainmenu,
+.navsubmenu{
+	margin:0; padding:0; list-style-type: none;
+}
+
+.navmainmenu > li {
+	border:0px solid red;
+}
+
+.navsubmenu{
+	width:1200px;
+	height:500px;
+	opacity:0;
+	visibility: hidden;
+	display:flex;
+	background-color:white;
+	float:center;
+	position:absolute;left:380px;top:70px;
+}
+
+.navsubmenu a{
+	color:#555555;
+	margin:auto; padding:auto;
+}
+
+
+
+#navsubmenu_class a :hover{
+	color:white;
+}
+
+
+.navsubmenu_class{
+	font-size:10px;
+}
+
+
+.navmainmenu > li:hover .navsubmenu{
+	opacity:1;
+	visibility: visible;
+}
+
+.navlist a:hover{
+	color:white;
+}
+.navsubmenu_white:hover {
+	color:#21A089;
+}
+
+#sayongja{
+	float:right;
+	margin:0 0 15px 0;
+}
+#sayongja2{
+	padding:0; 
+	position:fixed; right:50px; top:380px;
+	text-align: center;
+	width:90px;
+	color:#8996A9;
+	font-size:18px;
+	font-weight:bold;
+	height:300px;
+}
+#sayongja li{
+	padding:0 15px 0 15px;
+}
+
+#eng{
+	margin-left:100px;
+}
+#link{
+	color:gray;
+	font-weight:bold;
+	font-size:18px;
+}
+
+#link0 li{
+	padding:0 3px 0 3px;
+	font-weight:bold;
+	font-size:14px;
+	display:inline;
+}
+#link00{
+	position:absolute;
+	width:1200px;
+	height:40px;
+	margin-top:16px;
+}
+#ranking{
+	margin-left:50px;
+}
+button{
+	border:0;
+	outline:0;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 6;
+}
+.dropdown-content a {
+  display: block;
+}
+.dropdown:hover .dropdown-content{
+	display: block;
+}
+
+.navlist{
+	margin-top:20px;
+}
+
+.navlist li{
+	text-align:left;
+	color:#555555;
+	font-size:15px;
+	list-style-type: disc;
+	display:block;
+	margin-top:5px;
+
+}
+.navlist li:before{
+	content: "\2022";
+}
+
+
+.navlist > li:hover {
+
+	background-color:#21A089;
+	color:white;
+}
+
+
+#sidebar{
+	float:left;
+	display:relative;
+}
+
+#bar{
+	display:block;
+	font-size:13px;
+}
+#bar li{
+	display:inline-block;
+}
+
+#sidebar{
+	position: absolute;
+	margin-left:480px;
+	width:250px;
+	font-size:18px;
+	margin-top:200px;
+}
+#list{
+	list-style-type: disc;
+}
+#list li:hover{
+	text-decoration: underline;
+	font-weight:bold;
+}
+
+#list :before {
+	
+}
+
+#section1{
+	width:800px;
+}
+#section2{
+
+	margin-top:150px;
+	width:800px;
+}
+
+
+section{
+	position:absolute;
+	top:200px;
+	left:800px;
+	text-align:left;
+	width:2000px;
+	border : 0px solid #bbbbbb;
+}
+
+
+h1{
+	font-size:30px;
+}
+
+#rightbar{
+	float:right;
+}
+#table{
+	margin-top:50px;
+	display:block;
+	margin-left:30px;
+}
+#table li{
+	width:185px;
+	height:40px;
+	text-align:center;
+	padding-top:20px;
+	display:inline-block;
+	border:1px solid gray;
+	background-color:#F5F6FA;
+	color:gray !important;
+}
+
+#table li:hover{
+	background-color:#EDEEF3;
+}
+
+#tableicon{
+	background-color:white !important;
+	color:#043763 !important;
+	border:solid 1px #043763 !important;
+}
+
+
+.listdeco li:before{
+	content: "\2022";
+}
+.listdeco{
+	list-style-type:disc;
+	color:#666666;
+	font-size:13px;
+}
+
+
+
+.listdeco2{
+	list-style-type:circle;
+	font-size:25px;
+	font-weight:bold;
+	color:#043763;
+}
+
+
+
+.listdeco2 li:before{
+	content: "\2022";
+}
+
+.listmain{
+	margin-left:20px;
+}
+a { text-decoration:none !important; }
+
+#listp li{
+
+}
+
+.plz{
+
+	width:245px;
+	height:30px;
+	transition: all ease 0.5s;
+	float:right;
+}
+
+
+
+.plz img{
+	
+}
+
+.plz : hover{
+	  transform: rotateY(45deg);;
+}
+
+
+.rotate90:hover{
+	transition: all ease 0.3s;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+
+
+#image_canv{
+
+}
+
+</style>
+
+<body id="page">
+
+		
+
+	<header>
+
+
+
+
+
+		<ul>
+			<li>
+				<a href="./index.html"><div id="logo"><img src="./img/kcdc.JPG"></a> </div>
+			</li>
+			<li>
+				<div id="search"> 
+					<input type="text" placeholder="검색어를 입력해주세요.">
+					<button type="button" id="searchbutton" onclick="alert('이건 검색이 안되는 버튼이에요 ^^')"><img src="./img/q.png"></button>
+				</div>
+			</li>
+
+			<li id="ranking">
+				<div class="dropdown">
+				 <div class="dropbtn"><img src="./img/rank111.png"><img src="./img/under.png" onmouseover="this.src='./img/under1.png'" onmouseout="this.src='./img/under.png'"></div>
+					  <div class="dropdown-content">
+					    <a href="#"><img  style="z-index: 999;" src="./img/rankinglist.png"></a>
+					  </div>
+					</div>
+			</li>
+
+
+			<li id="eng">
+				<a href="http://www.cdc.go.kr/cdc_eng/"target="_blank"><img src="./img/h2.png"></a>
+				<a href="http://www.cdc.go.kr/sitemap.es?mid=a20810020000" target="_blank">
+					<img src="./img/h1.png">
+				</a>
+			</li>
+		</ul>
+	</header>
+
+
+
+	
+
+
+
+
+	<div class="clear"></div>
+
+
+
+
+
+	<nav> <!--상단메뉴-->
+		<ul class="navmainmenu"> 
+			<li>
+				<a href="http://www.cdc.go.kr/contents.es?mid=a20101000000">
+					<img src="./img/m9m.png" onmouseover="this.src='./img/m9.png'" onmouseout="this.src='./img/m9m.png'">
+				</a>
+				<ul class="navsubmenu" style="height:200px">
+					<li><a class="navsubmenu_white" href="http://www.cdc.go.kr/contents.es?mid=a20101000000" target"_blank">감염병정보</a></li>
+					<li><a class="navsubmenu_white" href="http://www.cdc.go.kr/cdc/travelList.es?mid=a20102010101" target"_blank">해외감염정보</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/cdc/travelList.es?mid=a20102010101">해외질병</a></li>
+							<li> <a class="navsubmenu_class" href="http://xn--now-po7lf48dlsm0ya109f.kr/" target"_blank">해외감염병NOW</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20102030101" target"_blank">예방접종정보</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20102040000" target"_blank">국가별요구사항</a></li>
+						</ul>
+					</li>
+					<li><a class="navsubmenu_white" href="http://www.cdc.go.kr/npt/biz/npp/portal/nppIssueIcdMain.do" target"_blank">감염병 유행정보<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="http://tbzero.cdc.go.kr/tbzero/main.do?pageEvent=N" target"_blank">결핵<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="https://nip.cdc.go.kr/irgd/index.html" target"_blank">예방접종<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="http://www.cdc.go.kr/contents.es?mid=a20106000000" target"_blank">감염병 간행물</a></li>
+				</ul>				
+			</li> <!--감염병-->
+
+
+
+			<li>
+				<a href="http://www.cdc.go.kr/contents.es?mid=a20203010000"><img src="./img/m8m.png" onmouseover="this.src='./img/m8.png'" onmouseout="this.src='./img/m8m.png'">
+				</a>
+				<ul class="navsubmenu" style="height:350px">
+					<li><a class="navsubmenu_white" href="http://www.cdc.go.kr/contents.es?mid=a20203010000" target"_blank">손상정보</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203010000" target"_blank">교통사고</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203020000" target"_blank">어린이손상</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203030000" target"_blank">익수</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203040000" target"_blank">자해/자살</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203050000" target"_blank">직업손상</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203060000" target"_blank">질식</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203070000" target"_blank">추락/낙상</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203080000" target"_blank">폭력/타살</a></li>
+							<li> <a class="navsubmenu_class" href="http://www.cdc.go.kr/contents.es?mid=a20203090000" target"_blank">화상</a></li>
+						</ul>
+					</li>
+					<li><a class="navsubmenu_white" href="http://www.cdc.go.kr/npt/biz/npp/portal/nppIssueIcdMain.do" target="_blank">희귀질환정보<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="http://tbzero.cdc.go.kr/tbzero/main.do?pageEvent=N" target="_blank">희귀질환정보<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="http://health.cdc.go.kr/health/Main.do" target="_blank"><img src="./img/goportal.png"></a></li>
+				</ul>			
+					
+			</li> <!--건강정보-->				
+
+
+
+			<li>
+				<a href="http://www.cdc.go.kr/contents.es?mid=a20301020100"><img src="./img/m7m.png" onmouseover="this.src='./img/m7.png'" onmouseout="this.src='./img/m7m.png'"></a>
+				<ul class="navsubmenu" style="height:450px">
+					<li><a class="navsubmenu_white" href="" target"_blank">감염병</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병위기대응</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">수인성식품매개감염병관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">호흡기감염병관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">인수공통감염병관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">결핵관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">후천성면역결핍증관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">의료감염관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병실험분석</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">검역관리<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병감시체계</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병정보화사업</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">시도감염병관리지원단</a></li>
+						</ul>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank">생물안전</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">생물안전및보안</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">고위험병원체국가관리<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">유전자변형생물체국가승인<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">생물안전연구시설국가안전관리<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">병원체생물안전정보<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">자료실<img src="./img/link.png"></a></li>
+						</ul>
+					</li>
+					<li><a class="navsubmenu_white" href="" target"_blank">만성질환</a>
+						<ul class="navlist">
+							<li><a class="navsubmenu_class" href="" target"_blank">건강조사</a></li>
+							<li><a class="navsubmenu_class" href="" target"_blank">만성질환예방관리</a></li>
+							<li><a class="navsubmenu_class" href="" target"_blank">기준관리</a></li>
+							<li><a class="navsubmenu_class" href="" target"_blank">희귀질환관리</a></li>
+						</ul>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank">기후변화</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">폭염</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">한파</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">미세먼지</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">기후변화건강적응대책</a></li>
+						</ul>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank">의료방사선안전관리</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">방사선피폭및방어</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">의료방사선게시판</a></li>
+						</ul>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank">장기·조직·혈액관리</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">장기·인체조직관리</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">혈액안전검사</a></li>
+						</ul>
+					</li>
+
+
+				</ul>
+			</li> <!--정책정보-->
+
+					
+
+
+
+
+
+
+
+			<li>
+				<a href="http://www.cdc.go.kr/contents.es?mid=a20401060000"><img src="./img/m6m.png" onmouseover="this.src='./img/m6.png'" onmouseout="this.src='./img/m6m.png'"></a>
+				<ul class="navsubmenu" style="height:450px">
+					<li><a class="navsubmenu_white" href="" target"_blank">질병연구</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">질병연구</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">범부처감염병대응R&D</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">수시기술수요조사</a></li>
+						</ul>
+					</li>
+
+
+					<li><a class="navsubmenu_white" href="" target"_blank">연구성과<img src="./img/link.png"></a>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank">연구자원인프라<img src="./img/link.png"></a>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank">생명윤리<img src="./img/link.png"></a>
+					</li>
+
+					<li><a class="navsubmenu_white" href="" target"_blank"><img src="./img/goportal2.png"></a>
+					</li>
+
+
+				</ul>		
+			</li> <!--연구개발-->
+
+
+
+
+			<li>
+				<a href="http://www.cdc.go.kr/gallery.es?mid=a20509000000&bid=0007"><img src="./img/m5m.png" onmouseover="this.src='./img/m5.png'" onmouseout="this.src='./img/m5m.png'"></a>
+				<ul class="navsubmenu" style="height:250px">
+					<li><a class="navsubmenu_white" href="" target"_blank">이달의건강소식</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">보도자료</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">포토뉴스</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">홍보자료</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">카드뉴스</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">홍보지</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">영상자료</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">라디오음원</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">교육자료</a></li>
+						</ul>
+					</li>
+					<li><a class="navsubmenu_white" href="" target"_blank">공지사항</a></li>
+					<br>
+					<li><a class="navsubmenu_white" href="" target"_blank">공고/공시</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">채용공고</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">법령·지침·서식</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">법령</a></li>
+							<li>지침</li>
+							<li>서식</li>
+						</ul>
+					</li>
+
+				</ul>	
+
+			</li> <!--알림,자료-->
+
+
+			<li>
+				<a href="https://www.cdc.go.kr/board/board.es?mid=a20602010000&bid=0034&cg_code=C13"><img src="./img/m4m.png" onmouseover="this.src='./img/m4.png'" onmouseout="this.src='./img/m4m.png'"></a>
+				<ul class="navsubmenu" style="height:450px">
+					<li><a class="navsubmenu_white" href="" target"_blank">간행물</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">주간건강과질병</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병뉴스레터<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">지역사회건강과안전사회<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">혈액소식지</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">오송PHRP<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">질병관리백서</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">국립보건연구원연보<img src="./img/link.png"></a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">NIH매거진<img src="./img/link.png"></a></li>
+						</ul>
+					</li>
+
+					<li>
+					<a class="navsubmenu_white" href="" target"_blank">통계</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병발생정보</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">감염병연보</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">건강통계</a></li>
+						</ul>
+				</li>
+
+				<li><a class="navsubmenu_white" href="" target"_blank">연구성과<img src="./img/link.png"></a></li>
+				</li>
+
+				<li><a class="navsubmenu_white" href="" target"_blank"><img src="./img/goportal3.png"></a></li>
+				</ul>
+			</li><!--간행물,통계-->
+
+
+
+
+			<li>
+				<a href="http://www.cdc.go.kr/contents.es?mid=a20801010000"><img src="./img/m3m.png" onmouseover="this.src='./img/m3.png'" onmouseout="this.src='./img/m3m.png'"></a>
+				<ul class="navsubmenu" style="height:150px">
+					<li><a class="navsubmenu_white" href="" target"_blank">1399콜센터</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">민원신청<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">나의민원확인<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">생명윤리법관련민원안내</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">사전정보공표</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">정보공개청구<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">공공데이터</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">기관장업무추진비</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">공무국외여행보고서</a></li>
+				</ul>		
+			</li> <!--민원,정보공개-->
+
+
+
+
+			<li>
+				<a href="http://www.cdc.go.kr/contents.es?mid=a20401060000"><img src="./img/m2m.png" onmouseover="this.src='./img/m2.png'" onmouseout="this.src='./img/m2m.png'"></a>
+				<ul class="navsubmenu" style="height:250px">
+					<li><a class="navsubmenu_white" href="" target"_blank">소개</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">인사말</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">약력</a></li>
+						</ul>
+					</li>
+					<li><a class="navsubmenu_white" href="" target"_blank">비전과미션</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">핵심사업</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">연혁</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">조직·직원찾기</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">정부상징<img src="./img/link.png"></a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">오시는길</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">시설안내</a></li>
+					<li><a class="navsubmenu_white" href="" target"_blank">누리집이용안내</a>
+						<ul class="navlist">
+							<li> <a class="navsubmenu_class" href="" target"_blank">이용안내</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">사이트맵</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">개인정보처리방침</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">웹접근성품질인증</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">저작권정책</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">메인배너</a></li>
+							<li> <a class="navsubmenu_class" href="" target"_blank">알림존</a></li>
+						</ul>
+					</li>
+				</ul>		
+			</li> <!--기관소개-->
+
+
+			<li>
+				<img src="./img/m1m.png" onmouseover="this.src='./img/m1.png'" onmouseout="this.src='./img/m1m.png'">
+				<div class="navsubmenu" style="height:350px">
+					<img src="./img/homepage.png" height="343px">
+				</div>		
+			</li> <!--사업별홈페이지-->
+		</ul>
+		</div>
+	</nav>
+
+
+
+
+
+
+	<div class="clear"></div>
+
+
+	<aside id="sidebar">
+
+		<div style="font-size:25px;font-weight:bold;color:gray;margin-bottom:10px;">정책 정보</div>
+		<ul id="listp">
+			<li style="margin:10px 0 10px 0; padding:10px 0 10px 0;color:white;background-color:#21A089">
+				<span style="padding:10px 0 10px 0">감염병<span><span><img src="./img/up.PNG" style="float:right"></span>
+				<ul id="list" style="margin-top:10px; padding:10px 0 0 0; font-size:15px; text-decoration: none!important;background-color:#eeeeee;">
+					<li style="margin-top:10px; color:#21A089;"><a href="">· 감염병위기대응</a></li>
+					<li style="margin-top:10px;"><a href="">· 수인성식품매개감염병관리</a></li>
+					<li style="margin-top:10px;"><a href="">· 호흡기감염병관리</a></li>
+					<li style="margin-top:10px;"><a href="">· 인수공통감염병관리</a></li>
+					<li style="margin-top:10px;"><a href="">· 결핵관리</a></li>
+					<li style="margin-top:10px;"><a href="">· 후천성면역결핍증관리</a></li>
+					<li style="margin-top:10px;"><a href="">· 의료감염관리</a></li>
+					<li style="margin-top:10px;"><a href="">· 감염병실험분석</a></li>
+					<li style="margin-top:10px;"><a href="">· 검역관리<img src="./img/link.png"></a></li>
+					<li style="margin-top:10px;"><a href="">· 감염병감시체계</a></li>
+					<li style="margin-top:10px;"><a href="">· 감염정보화사업</a></li>
+					<li style="margin-top:10px;"><a href="">· 감염병정보화사업</a></li>
+					<li style=" background-color:#eeeeee;margin:10px 0 -10px 0;padding-bottom:10px"><a href="">· 시도감염병관리지원단</a></li>
+				</ul>
+			</li>
+			<li style="padding:10px 0 10px 0;color:gray;background-color:white;">
+			생물안전 <img id="image_canv" style="float:right"; src="./img/down.png" class="rotate90"> </li>
+			<li><img src="./img/underline2.PNG" width="250px" height="21px"></li>
+			<li style="padding:10px 0 10px 0;color:gray;background-color:white;">만성질환 <img id="image_canv" style="float:right"; src="./img/down.png" class="rotate90"> </li>
+			<li><img src="./img/underline2.PNG" width="250px" height="21px"></li>
+			<li style="padding:10px 0 10px 0;color:gray;background-color:white;">기후변화<img id="image_canv" style="float:right"; src="./img/down.png" class="rotate90"> </li>
+			<li><img src="./img/underline2.PNG" width="250px" height="21px"></li>
+
+			<li style="padding:10px 0 10px 0;color:gray;background-color:white;">
+				의료방사선안전관리<img id="image_canv" style="float:right"; src="./img/down.png" class="rotate90"> </li>
+			<li><img src="./img/underline2.PNG" width="250px" height="21px"></li>
+			<li style="padding:10px 0 10px 0;color:gray;background-color:white;">장기·조직·혈액관리<img id="image_canv" style="float:right"; src="./img/down.png" class="rotate90"> </li>
+			<li><img src="./img/underline2.PNG" width="250px" height="21px"></li>
+		</ul>
+
+
+	</aside>
+
+
+	<aside>
+		<div id = "sayongja2">
+			<ul>
+					
+				<li><div id="sayongja"><br>사용자별<br>맞춤메뉴<br></div></li>
+				<li><a href=""><div class="fade"><img src="./img/sm1.png" /><div><img src="./img/sm2.png" /><br></div></div></a></li><!--일반인-->
+				<li><a href=""><div class="fade"><img src="./img/sm3.png" /><div><img src="./img/sm4.png" /><br></div></div></a></li><!--연구자-->
+				<li><a href=""><div class="fade"><img src="./img/sm5.png" /><div><img src="./img/sm6.png" /><br></div></div></a></li><!--언론인-->
+			</ul>
+
+
+
+			<script>
+				// when the DOM is ready:
+				$(document).ready(function () {
+			  // find the div.fade elements and hook the hover event
+			  $('div.fade').hover(function() {
+			    // on hovering over, find the element we want to fade *up*
+			    var fade = $('> div', this);
+			    
+			    // if the element is currently being animated (to a fadeOut)...
+			    if (fade.is(':animated')) {
+			      // ...take it's current opacity back up to 1
+			      fade.stop().fadeTo(250, 1);
+			    } else {
+			      // fade in quickly
+			      fade.fadeIn(250);
+			    }
+			  }, function () {
+			    // on hovering out, fade the element out
+			    var fade = $('> div', this);
+			    if (fade.is(':animated')) {
+			      fade.stop().fadeTo(250, 0);
+			    } else {
+			      // fade away slowly
+			      fade.fadeOut(250);
+			    }
+			  });
+				});
+			</script>
+		</div>
+	</aside>
+
+
+
+	<div class="clear"></div>
+
+
+
+	<section id="section1">
+
+		<span style="float:right"><a href="index.html"><img src="./img/homeicon.png" ></a> 정책정보 > 감염병 > 감염병위기대응 > <span style="font-weight:bold; color:#21A8B1">긴급상황센터</span></span>
+		<h1>감염병위기대응</h1>
+		<span style="float:right">
+			<span style="margin-left:10px"><a href="" target="_blank"><img src="./img/shareicon.png" onmouseover="this.src='./img/shareicon1.png'" onmouseout="this.src='./img/shareicon.png'"></a></span>
+
+			<span style="margin-left:10px"><a href="" target="_blank"><img src="./img/printicon.png" onmouseover="this.src='./img/printicon1.png'" onmouseout="this.src='./img/printicon.png'"></a></span>
+		</span>
+		<br><br>
+
+		<span><img src="./img/underline.PNG" width="800px"></span>
+		<ul id="bar">
+		<li><span style="color:gray">작성일 </span>2019-06-10</li>
+		<li><span style="color:gray"> | </span></li>
+		<li><span style="color:gray">최종수정일 </span>2019-07-22</li>
+		<li><span style="color:gray"> | </span></li>
+		<li><span style="color:gray">담당부서 </span>위기대응생물테러총괄과</li>
+		<li><span style="color:gray"> | </span></li>
+		<li><span style="color:gray">연락처 </span>043-719-9386</li>
+		<li id="rightbar"><img src="./img/eye.PNG" width="70px"></li>
+		</ul>
+
+		<span><img src="./img/underline2.PNG" width="800px"></span>
+	</section>
+
+	<section id="section2">
+
+		<ul id="table">
+			<li id="tableicon" style="margin-right:-6px"><a href="">긴급상황센터</a></li>
+			<li style="margin-right:-6px"><a href="http://www.cdc.go.kr/contents.es?mid=a20301020200" target="_balnk" >긴급 상황실</a></li>
+			<li style="margin-right:-6px"><a href="http://www.cdc.go.kr/contents.es?mid=a20301020300" target="_balnk">감염병위기시대응체계</a></li>
+			<li style="margin-right:-6px"><a href="http://www.cdc.go.kr/contents.es?mid=a20301020400" target="_balnk">중앙역학조사관</a></li>
+			<br>
+			<li style="margin-right:-6px"><a href="http://www.cdc.go.kr/contents.es?mid=a20301020500" target="_balnk">감염병위기분석평가</a></li>
+			<li style="margin-right:-6px"><a href="http://www.cdc.go.kr/contents.es?mid=a20301020600" target="_balnk">국제협력네트워크</a></li>
+			<li style="margin-right:-6px"><a href="http://www.cdc.go.kr/contents.es?mid=a20301020704" target="_balnk">신종감염병관리</a></li>
+			<li style="margin-right:-6px"><a href="https://www.cdc.go.kr/board/board.es?mid=a20301021001&bid=0002&&cg_code=C01" target="_balnk">신종감염병현황</a></li>
+		</ul>
+
+
+
+
+		<ul class="listmain">
+			<br>
+			<li class="listdeco2">설치목적</li>
+				<ul>
+					<li class="listdeco">긴급상황센터는 감염병 위기상황의 조기인지(early detection)와 신속대응(rapid response)을 통해 감염병 확산을 차단하여 피해를 최소화</li>
+					<li class="listdeco">모든 감염병 정보를 통합적으로 관리하고, 유관기관과 협력하여 현장 대응을 지휘, 통제 및 지원기능</li>
+				</ul>
+
+		</ul>
+
+		<ul class="listmain">
+			<br>
+			<li class="listdeco2">조직 소개</li>
+				<ul>
+					<li class="listdeco">상시정보수집·분석 → 위기평가 → 신속대응 판단 → 역할 조정·지원 과정이 유기적으로 연계되도록 부서 간의 업무 협조 체계 구축</li>
+					<li class="listdeco">위기대응생물테러총괄과, 검역지원과, 자원관리과, 위기분석국제협력과, 신종감염병대응과로 구성되며, 위기대응생물테러총괄과는 24시간 긴급상황실 운영</li>
+					<br>
+					<li><img src="./img/0301020100_img1.gif" width="700px"></li>
+					<li class="listdeco">(흐름도) 24시간 상황실 운영을 통하여 국내·외 감염병 정보를 상시 수집 → 감염병 발생에 대한 상시 대응 체계 유지 → 감염병 위기상황 감지 시 신속히 위기 수준 평가 → 현장 초동 대응을 위한 즉각대응팀 파견 → 현장 상황 지휘 통제 → (유관기관 및 전문가와 공유하여 협력)</li>
+				</ul>
+			<br>
+
+		</ul>	
+	</section>
+
+
+
+	<div class="clear"></div>
+
+
+
+	
+
+
+
+
+
+
+	<div class="clear"></div>
+	
+
+
+
+
+	
+	<footer>
+
+		<div id="address">
+			<img src="./img/address.JPG">
+		</div>
+	</footer>
+
+
+
+
+
+
+	
+
+	<a style="display:scroll;position:fixed;bottom:10px;right:10px;" href="#" title=”맨위로"><img src="./img/top.png"></a>
+
+
+</body>
