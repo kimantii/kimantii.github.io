@@ -432,6 +432,7 @@ button{
 a { text-decoration:none }
 
 
+
 </style>
 
 
@@ -800,36 +801,28 @@ a { text-decoration:none }
 			<ul>
 				
 					<li><div id="sayongja"><br>사용자별<br>맞춤메뉴<br></div></li>
-					<li><a href=""><div class="fade"><img src="./img/sm1.png" /><div><img src="./img/sm2.png" /><br></div></div></a></li><!--일반인-->
-					<li><a href=""><div class="fade"><img src="./img/sm3.png" /><div><img src="./img/sm4.png" /><br></div></div></a></li><!--연구자-->
-					<li><a href=""><div class="fade"><img src="./img/sm5.png" /><div><img src="./img/sm6.png" /><br></div></div></a></li><!--언론인-->
+					<li><a href=""><div class="fade"><img src="./img/sm1.png" onmouseover="this.src='./img/sm2.png'" onmouseout="this.src='./img/sm1.png'"><br></div></div></a></li><!--일반인-->
+					<li><a href=""><img src="./img/sm3.png" onmouseover="this.src='./img/sm4.png'" onmouseout="this.src='./img/sm3.png'"><br></div></div></a></li><!--연구자-->
+					<li><a href=""><div class="fade"><img src="./img/sm5.png" onmouseover="this.src='./img/sm6.png'" onmouseout="this.src='./img/sm5.png'"><br></div></div></a></li><!--언론인-->
 			</ul>
 
 
 
 			<script>
-				// when the DOM is ready:
 				$(document).ready(function () {
-			  // find the div.fade elements and hook the hover event
 			  $('div.fade').hover(function() {
-			    // on hovering over, find the element we want to fade *up*
 			    var fade = $('> div', this);
 			    
-			    // if the element is currently being animated (to a fadeOut)...
 			    if (fade.is(':animated')) {
-			      // ...take it's current opacity back up to 1
 			      fade.stop().fadeTo(250, 1);
 			    } else {
-			      // fade in quickly
 			      fade.fadeIn(250);
 			    }
 			  }, function () {
-			    // on hovering out, fade the element out
 			    var fade = $('> div', this);
 			    if (fade.is(':animated')) {
 			      fade.stop().fadeTo(250, 0);
 			    } else {
-			      // fade away slowly
 			      fade.fadeOut(250);
 			    }
 			  });
@@ -889,7 +882,7 @@ a { text-decoration:none }
 
 
 	<section id="sub2height">
-		<ul>
+		<ul style="background-color:white;">
 			<li id="sub22"><img src="./img/h2_fav.png"></li>
 			<li class="sub2"><a href="http://www.cdc.go.kr/cdc/travelList.es?mid=a20102010101" target="blank"><img src="./img/ss1.JPG" onmouseover="this.src='./img/ss11.png'" onmouseout="this.src='./img/ss1.JPG'"></a> <br><div class="sub2info">국가별질병정보</div></li>
 			<li class="sub2"><a href="http://www.cdc.go.kr/gallery.es?mid=a20503010000&bid=0002" target="blank"><img src="./img/ss2.JPG" onmouseover="this.src='./img/ss22.png'" onmouseout="this.src='./img/ss2.JPG'"></a> <br><div class="sub2info">홍보자료</div></li>
